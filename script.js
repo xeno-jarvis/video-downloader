@@ -1,43 +1,30 @@
-const downloadBtn = document.getElementById("downloadBtn");
-const videoUrlInput = document.getElementById("videoUrl");
-const statusDiv = document.getElementById("status");
+const backendUrl = "https://video-downloader-backend-4jgo.onrender.com/download";
 
-downloadBtn.addEventListener("click", async () => {
-  const videoUrl = videoUrlInput.value.trim();
+document.getElementById("downloadBtn").addEventListener("click", async () => {
+  const videoUrl = document.getElementById("videoUrl").value.trim();
+  const resultBox = document.getElementById("result");
+
   if (!videoUrl) {
-    statusDiv.textContent = "Please enter a video URL.";
+    resultBox.textContent = "Please enter a video URL.";
     return;
   }
 
-  statusDiv.textContent = "Preparing download...";
+  resultBox.textContent = "Processing...";
 
   try {
-    // Replace with your backend endpoint later
-  const backendUrl = "https://video-downloader-backend-4jgo.onrender.com";
-
-
-
-    const response = await fetch(backendUrl, {
+    const res = await fetch(backendUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url: videoUrl }),
+      body: JSON.stringify({ url: videoUrl })
     });
 
-    if (!response.ok) throw new Error("Server error");
+    if (!res.ok) throw new Error("Failed to fetch from backend");
 
-    const data = await response.json();
-    if (data.downloadUrl) {
-      window.location.href = data.downloadUrl;
-      statusDiv.textContent = "Starting download...";
-    } else {
-      statusDiv.textContent = "Could not generate download link.";
-    }
+    const data = await res.json();
+    resultBox.textContent = data.message || "Download link generated!";
+    console.log("Backend Response:", data);
   } catch (err) {
-    statusDiv.textContent = "Error: " + err.message;
+    console.error(err);
+    resultBox.textContent = "Error: Unable to reach backend.";
   }
 });
-
-
-
-
-
