@@ -5,7 +5,7 @@ document.getElementById("downloadBtn").addEventListener("click", async () => {
   const resultBox = document.getElementById("result");
 
   if (!videoUrl) {
-    resultBox.textContent = "Please enter a video URL.";
+    resultBox.textContent = "Please enter a YouTube URL.";
     return;
   }
 
@@ -18,14 +18,18 @@ document.getElementById("downloadBtn").addEventListener("click", async () => {
       body: JSON.stringify({ url: videoUrl })
     });
 
-    if (!res.ok) throw new Error("Failed to fetch from backend");
-
     const data = await res.json();
-    resultBox.textContent = data.message || "Download link generated!";
-    console.log("Backend Response:", data);
+
+    if (data.success) {
+      resultBox.innerHTML = `
+        <p><strong>${data.title}</strong></p>
+        <a href="${data.downloadUrl}" target="_blank" download>⬇ Download Video</a>
+      `;
+    } else {
+      resultBox.textContent = data.message;
+    }
   } catch (err) {
     console.error(err);
     resultBox.textContent = "Error: Unable to reach backend.";
   }
 });
-
