@@ -13,7 +13,7 @@ downloadBtn.addEventListener("click", async () => {
 
   try {
     // Replace with your backend endpoint later
-    const backendUrl = "https://your-render-backend.onrender.com/download";
+    const backendUrl = "https://video-downloader-0tox.onrender.com/";
 
     const response = await fetch(backendUrl, {
       method: "POST",
@@ -34,3 +34,4 @@ downloadBtn.addEventListener("click", async () => {
     statusDiv.textContent = "Error: " + err.message;
   }
 });
+
