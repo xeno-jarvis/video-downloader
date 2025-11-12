@@ -1,5 +1,6 @@
 const backendUrl = "https://video-downloader-backend-4jqo.onrender.com/download";
 
+
 document.getElementById("downloadBtn").addEventListener("click", async () => {
   const videoUrl = document.getElementById("videoUrl").value.trim();
   const resultBox = document.getElementById("result");
@@ -33,3 +34,4 @@ document.getElementById("downloadBtn").addEventListener("click", async () => {
     resultBox.textContent = "Error: Unable to reach backend.";
   }
 });
+
