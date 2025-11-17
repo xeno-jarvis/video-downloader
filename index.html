@@ -1,22 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Video Downloader</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Downloader - Fast & Free</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Video Downloader</h1>
-    <p>Paste your video URL below and click Download.</p>
-    <input type="text" id="videoUrl" placeholder="Enter video URL..." />
-    <button id="downloadBtn">Download</button>
-    <div id="status"></div>
-  </div>
-<div id="result"></div>
-
-  <script src="script.js"></script>
+    <div class="container">
+        <div class="card">
+            <h1>🎥 YouTube Downloader</h1>
+            <p class="subtitle">Download YouTube videos instantly</p>
+            
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    id="videoUrl" 
+                    placeholder="Paste YouTube URL here..." 
+                    aria-label="YouTube URL input"
+                >
+                <button id="downloadBtn" onclick="downloadVideo()">Download</button>
+            </div>
+            
+            <div id="status" class="status hidden"></div>
+            
+            <div id="result" class="result hidden">
+                <h3 id="videoTitle"></h3>
+                <div class="download-options">
+                    <a id="downloadLink" class="download-link" download>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                        </svg>
+                        Download Video
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info">
+            <p>✨ Supports all YouTube videos</p>
+            <p>⚡ Fast downloads powered by yt-dlp</p>
+            <p>🔒 No data stored - completely private</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
-
